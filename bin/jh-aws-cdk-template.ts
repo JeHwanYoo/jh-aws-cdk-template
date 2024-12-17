@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 import 'source-map-support/register'
 import * as cdk from 'aws-cdk-lib'
-import { JhAwsCdkTemplateStack } from '../lib/jh-aws-cdk-template-stack'
+import { JhVpcStack } from '../lib/jh-vpc-stack'
 
 const app = new cdk.App()
-new JhAwsCdkTemplateStack(app, 'JhAwsCdkTemplateStack', {
+new JhVpcStack(app, 'JhAwsCdkTemplateStack', {
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */
