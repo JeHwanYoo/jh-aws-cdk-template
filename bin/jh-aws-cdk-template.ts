@@ -3,8 +3,23 @@ import 'source-map-support/register'
 import * as cdk from 'aws-cdk-lib'
 import { JhVpcStack } from '../lib/jh-vpc-stack'
 
+const projectName = process.env.PROJECT_NAME
+const camelCaseRegex = /^[A-Z][a-zA-Z0-9]*$/
+
+if (!projectName) {
+  console.error('Project name is missing')
+  process.exit(1)
+}
+
+if (!camelCaseRegex.test(projectName)) {
+  console.error(
+    'Project name should be in CamelCase format (e.g. MyProjectName)',
+  )
+  process.exit(1)
+}
+
 const app = new cdk.App()
-new JhVpcStack(app, 'JhAwsCdkTemplateStack', {
+new JhVpcStack(app, `${projectName}VpcStack`, {
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */
